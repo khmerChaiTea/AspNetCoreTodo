@@ -1,3 +1,5 @@
+using AspNetCoreTodo.Services;
+
 namespace AspNetCoreTodo
 {
 	public class Program
@@ -8,6 +10,8 @@ namespace AspNetCoreTodo
 
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
+			// Since the book is outdated we put Startup.cs code here add builder and change s to S
+			builder.Services.AddSingleton<ITodoItemService, FakeTodoItemService>();
 
 			var app = builder.Build();
 
