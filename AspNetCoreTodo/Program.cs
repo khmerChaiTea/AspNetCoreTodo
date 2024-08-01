@@ -15,7 +15,7 @@ namespace AspNetCoreTodo
 			builder.Services.AddControllersWithViews();
 
 			// Since the book is outdated we put Startup.cs code here add builder and change s to S
-			builder.Services.AddSingleton<ITodoItemService, FakeTodoItemService>();
+			builder.Services.AddScoped<ITodoItemService, TodoItemService>();
 
             // Configure Entity Framework Core to use SQLite **Look at my VS Code Program.cs
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
