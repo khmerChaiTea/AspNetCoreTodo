@@ -22,5 +22,24 @@ namespace AspNetCoreTodo.Services
 				.Where(x => x.IsDone == false)
 				.ToArrayAsync();
 		}
+
+		public async Task<bool> AddItemAsync(TodoItem newItem)
+		{
+			newItem.Id = Guid.NewGuid();
+			newItem.IsDone = false;
+
+			// Ensure DueAt is properly assigned from user input
+			if (newItem.DueAt == default)
+			{
+				// Optionally handle cases where DueAt might be missing
+				// For example, set a default value if not provided
+				newItem.DueAt = DateTimeOffset.Now.AddDays(3); // Optional default if DueAt is not provided
+			}
+
+			_context.Items.Add(newItem);
+
+			var saveResult = await _context.SaveChangesAsync();
+			return saveResult == 1;
+		}	// P. 67
 	}
 }	// P. 57; delete FakeTodoItemService.cs
