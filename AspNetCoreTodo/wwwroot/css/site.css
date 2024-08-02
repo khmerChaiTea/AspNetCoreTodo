@@ -20,3 +20,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Add css p. 30 */
+div.todo-panel {
+    margin-top: 15px;
+}
+
+table tr.done {
+    text-decoration: line-through;
+    color: #888;
+}

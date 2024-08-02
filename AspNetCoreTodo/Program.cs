@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreTodo.Data;
+using AspNetCoreTodo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+// Add services.AddSingleton<ITodoItemService, FakeTodoItemService>(); but make a little change
+// Make sure to have using AspNetCoreTodo.Services; p. 39
+builder.Services.AddSingleton<ITodoItemService, FakeTodoItemService>();
 
 var app = builder.Build();
 
