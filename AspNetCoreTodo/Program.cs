@@ -16,8 +16,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 // Add services.AddSingleton<ITodoItemService, FakeTodoItemService>(); but make a little change
-// Make sure to have using AspNetCoreTodo.Services; p. 39
-builder.Services.AddSingleton<ITodoItemService, FakeTodoItemService>();
+// Make sure to have using AspNetCoreTodo.Services; p. 39, p. 59
+builder.Services.AddScoped<ITodoItemService, TodoItemService>();
 
 var app = builder.Build();
 

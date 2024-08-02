@@ -1,4 +1,6 @@
 ﻿@model TodoViewModel
+@using Humanizer
+<!-- P. 46 -->
 
 @{
 	ViewData["Title"] = "Manage your todo list";
@@ -23,7 +25,8 @@
 					<input type="checkbox" class="done-checkbox">
 				</td>
 				<td>@item.Title</td>
-				<td>@item.DueAt</td>
+				<td>@item.DueAt.Humanize()</td>
+				<!-- P. 46 -->
 			</tr>
 		}
 	</table>
