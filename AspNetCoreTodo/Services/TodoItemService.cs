@@ -40,6 +40,20 @@ namespace AspNetCoreTodo.Services
 
 			var saveResult = await _context.SaveChangesAsync();
 			return saveResult == 1;
-		}	// P. 67
+		}   // P. 67
+
+		public async Task<bool> MarkDoneAsync(Guid id)
+		{
+			var item = await _context.Items
+				.Where(x => x.Id == id)
+				.SingleOrDefaultAsync();
+
+			if (item == null) return false;
+
+			item.IsDone = true;
+
+			var saveResult = await _context.SaveChangesAsync();
+			return saveResult == 1; // One entity should have been updated
+		}	// P. 73
 	}
 }	// P. 57; delete FakeTodoItemService.cs

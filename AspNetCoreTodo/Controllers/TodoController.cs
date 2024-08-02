@@ -45,7 +45,22 @@ namespace AspNetCoreTodo.Controllers
 				return BadRequest("Could not add item.");
 			}
 			return RedirectToAction("Index");
-		}	// P. 64
+		}   // P. 64
+
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> MarkDone(Guid id)
+		{
+			if (id == Guid.Empty)
+			{
+				return RedirectToAction("Index");
+			}
+			var successful = await _todoItemService.MarkDoneAsync(id);
+			if (!successful)
+			{
+				return BadRequest("Could not mark item as done.");
+			}
+			return RedirectToAction("Index");
+		}	// P. 71
 	}
 }
 // make sure to have using AspNetCoreTodo.Services; using AspNetCoreTodo.Models;
