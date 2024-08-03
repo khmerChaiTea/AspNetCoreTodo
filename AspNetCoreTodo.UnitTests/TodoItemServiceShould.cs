@@ -43,7 +43,7 @@ namespace AspNetCoreTodo.UnitTests
 
 				var item = await context.Items.FirstAsync();
 				Assert.Equal("Testing?", item.Title);
-				Assert.Equal(false, item.IsDone);
+				Assert.False(item.IsDone);	// use false on the outside
 
 				// Item should be due 3 days from now (give or take a second)
 				var difference = DateTimeOffset.Now.AddDays(3) - item.DueAt;
