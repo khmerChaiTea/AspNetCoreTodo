@@ -78,3 +78,5 @@ static void InitializeDatabase(WebApplication app)
 		}
 	}
 }
+
+public partial class Program { }
